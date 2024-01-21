@@ -1,5 +1,9 @@
 import fs from "fs";
-import DataModel from "../app.js";
+import {
+  Venda,
+  Marca,
+} from "/home/jessica/Documentos/DESAFIO TECH MEDIA MONKS/model/model.js";
+import { connection_sync } from "/home/jessica/Documentos/DESAFIO TECH MEDIA MONKS/app.js";
 
 async function lendo_Database_1() {
   try {
@@ -49,7 +53,12 @@ async function corrigir_e_salvar() {
       JSON.stringify(json_nome_veiculo_corrigido, null, 2),
       "utf8"
     );
-    await DataModel.bulkCreate(json_nome_veiculo_corrigido);
+
+    for (const item of json_nome_veiculo_corrigido) {
+      await Venda.create(item);
+    }
+
+    return dados1;
   }
 
   if (jsonData2) {
@@ -65,8 +74,24 @@ async function corrigir_e_salvar() {
       JSON.stringify(json_marca_veiculo_corrigido, null, 2),
       "utf8"
     );
-    await DataModel.bulkCreate(json_marca_veiculo_corrigido);
+
+    for (const item of json_nome_veiculo_corrigido) {
+      await Marca.create(item);
+    }
+    return dados2;
   }
 }
+async function main() {
+  let sincronizar_dados;
 
-corrigir_e_salvar();
+  try {
+    await connection_sync;
+    sincronizar_dados = await corrigir_e_salvar();
+  } catch (error) {
+    console.error("Erro ao sincronizar e corrigir dados:", error);
+  }
+
+  return sincronizar_dados;
+}
+
+main();

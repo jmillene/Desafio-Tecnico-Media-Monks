@@ -1,32 +1,22 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { Sequelize } from "sequelize";
 
-// Configuração da instância do Sequelize
-const connection = new Sequelize('root', 'root', 'root', {
-  host: '172.18.0.2',
-  dialect: 'mysql',
+const connection = new Sequelize("root", "root", "root", {
+  host: "localhost",
+  dialect: "mysql",
+  port: 3308,
 });
 
-// este de conexão
-const conexao = connection.authenticate()
+const connection_sync = connection
+  .authenticate()
   .then(() => {
-    console.log('Conexão com o banco bem-sucedida');
-
-    //modelo
-    const DataModel = connection.define('Data', {
-      jsonData: {
-        type: DataTypes.JSON,
-        allowNull: false,
-      },
-    });
-
-    // Sincronize o modelo com o banco de dados
+    console.log("Conexão com o banco bem-sucedida");
     return connection.sync();
   })
   .then(() => {
-    console.log('Modelo sincronizado com o banco de dados');
+    console.log("Modelo sincronizado com o banco de dados");
   })
   .catch((err) => {
-    console.log('Não foi possível estabelecer uma conexão:', err);
+    console.log("Não foi possível estabelecer uma conexão:", err);
   });
 
-export default DataModel;
+export { connection, connection_sync };
