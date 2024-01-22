@@ -1,6 +1,6 @@
 (async () => {
     const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
-    const Marca = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/MarcaVeiculo.js");
+    const Venda = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/VendaVeiculo.js");
  
     try {
         const resultado = await database.sync();
@@ -12,7 +12,7 @@
 
 (async () => {
     const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
-    const Venda = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/MarcaVeiculo.js");
+    const Marca = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/MarcaVeiculo.js");
  
     try {
         const resultado = await database.sync();

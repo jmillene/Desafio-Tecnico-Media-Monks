@@ -1,5 +1,5 @@
 const fs = require("fs");
-const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
+const { Venda } = require("../Model/VendaVeiculo");
 
 async function lendo_Database_1() {
   try {
@@ -38,10 +38,9 @@ async function corrigir_e_salvar() {
       if (item && item.nome && typeof item.nome === "string") {
         item.nome = item.nome.replace(/æ/g, "a").replace(/ø/g, "o");
       }
-      if (item && item.Venda && typeof item.Venda === "string") {
-        item.Venda = Number(item.Venda);
+      if (item && item.vendas && typeof item.vendas === "string") {
+        item.Venda = Number(item.vendas);
       }
-      console.log(item.Venda, "Oiiiiiiiiii");
       return item;
     });
 
@@ -52,10 +51,17 @@ async function corrigir_e_salvar() {
     );
 
     for (let item of json_nome_veiculo_corrigido) {
-      if (item !== undefined) {
+      if (item !== undefined && item.id_marca !== undefined) {
         try {
-          const resultadoCreate1 = await database.create(item);
-          console.log(resultadoCreate1);
+          const resultadoCreate1 = await Venda.create({
+            data: item.data,
+            id_marca: item.id_marca,
+            id_venda: item.id_venda,
+            vendas: item.vendas,
+            valor_do_veiculo: item.valor_do_veiculo,
+            nome: item.nome,
+          });
+          return resultadoCreate1;
         } catch (error) {
           console.error("Erro ao criar e salvar Venda:", error);
         }
@@ -70,7 +76,6 @@ async function corrigir_e_salvar() {
       if (item.Marca && typeof item.Marca === "string") {
         item.Marca = item.Marca.replace(/æ/g, "a").replace(/ø/g, "o");
       }
-      console.log(item.Marca, "Marcaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       return item;
     });
 
@@ -82,8 +87,11 @@ async function corrigir_e_salvar() {
 
     for (let item of json_marca_veiculo_corrigido) {
       try {
-        const resultadoCreate2 = await database.create(item);
-        console.log(resultadoCreate2);
+        const resultadoCreate2 = await Marca.create({
+          id_marca: item.id_marca,
+          nome: item.nome,
+        });
+        console.log("Marca criada com sucesso:", resultadoCreate2);
       } catch (error) {
         console.error("Erro ao criar e salvar Marca:", error);
       }
@@ -96,8 +104,8 @@ async function corrigir_e_salvar() {
 async function main() {
   let sincronizar_dados;
   try {
-    await database;
     sincronizar_dados = await corrigir_e_salvar();
+    console.log("Dados salvos no Banco de dados");
   } catch (error) {
     console.error("Erro ao sincronizar e corrigir dados:", error);
   }

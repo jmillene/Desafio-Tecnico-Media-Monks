@@ -39,7 +39,8 @@
     "id_marca_": 2,
     "vendas": "2",
     "valor_do_veiculo": 40000,
-    "nome": "Gol"
+    "nome": "Gol",
+    "Venda": 2
   },
   {
     "data": "2022-01-01",
@@ -74,7 +75,8 @@
     "id_marca_": 11,
     "vendas": "5",
     "valor_do_veiculo": 70000,
-    "nome": "Captur"
+    "nome": "Captur",
+    "Venda": 5
   },
   {
     "data": "2022-02-01",
@@ -95,7 +97,8 @@
     "id_marca_": 1,
     "vendas": "52",
     "valor_do_veiculo": 29000,
-    "nome": "Mobi"
+    "nome": "Mobi",
+    "Venda": 52
   },
   {
     "data": "2022-02-01",
@@ -137,7 +140,8 @@
     "id_marca_": 3,
     "vendas": "4",
     "valor_do_veiculo": 41000,
-    "nome": "Cerato"
+    "nome": "Cerato",
+    "Venda": 4
   },
   {
     "data": "2022-02-01",
@@ -221,7 +225,8 @@
     "id_marca_": 10,
     "vendas": "5",
     "valor_do_veiculo": 25000,
-    "nome": "J5"
+    "nome": "J5",
+    "Venda": 5
   },
   {
     "data": "2022-03-01",
@@ -249,7 +254,8 @@
     "id_marca_": 3,
     "vendas": "30",
     "valor_do_veiculo": 26000,
-    "nome": "Picanto"
+    "nome": "Picanto",
+    "Venda": 30
   },
   {
     "data": "2022-04-01",
@@ -270,7 +276,8 @@
     "id_marca_": 6,
     "vendas": "5",
     "valor_do_veiculo": 30000,
-    "nome": "March"
+    "nome": "March",
+    "Venda": 5
   },
   {
     "data": "2022-04-01",
@@ -340,7 +347,8 @@
     "id_marca_": 5,
     "vendas": "3",
     "valor_do_veiculo": 35000,
-    "nome": "Yaris"
+    "nome": "Yaris",
+    "Venda": 3
   },
   {
     "data": "2022-05-01",
@@ -781,7 +789,8 @@
     "id_marca_": 2,
     "vendas": "26",
     "valor_do_veiculo": 58000,
-    "nome": "Up"
+    "nome": "Up",
+    "Venda": 26
   },
   {
     "data": "2022-11-01",
@@ -802,7 +811,8 @@
     "id_marca_": 5,
     "vendas": "6",
     "valor_do_veiculo": 158000,
-    "nome": "Corolla"
+    "nome": "Corolla",
+    "Venda": 6
   },
   {
     "data": "2022-11-01",
@@ -830,7 +840,8 @@
     "id_marca_": 9,
     "vendas": "5",
     "valor_do_veiculo": 40000,
-    "nome": "onix"
+    "nome": "onix",
+    "Venda": 5
   },
   {
     "data": "2022-11-01",
@@ -879,7 +890,8 @@
     "id_marca_": 5,
     "vendas": "3",
     "valor_do_veiculo": 75000,
-    "nome": "Yaris"
+    "nome": "Yaris",
+    "Venda": 3
   },
   {
     "data": "2022-12-01",
@@ -921,6 +933,7 @@
     "id_marca_": 11,
     "vendas": "6",
     "valor_do_veiculo": 52000,
-    "nome": "Sandero"
+    "nome": "Sandero",
+    "Venda": 6
   }
 ]
