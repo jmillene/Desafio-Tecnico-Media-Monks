@@ -1,9 +1,5 @@
-import fs from "fs";
-import {
-  Venda,
-  Marca,
-} from "/home/milene/Documents/Desafio-Tecnico-Monks-Media/model/model.js";
-import { connection_sync } from "/home/milene/Documents/Desafio-Tecnico-Monks-Media/app.js";
+const fs = require("fs");
+const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
 
 async function lendo_Database_1() {
   try {
@@ -42,9 +38,10 @@ async function corrigir_e_salvar() {
       if (item && item.nome && typeof item.nome === "string") {
         item.nome = item.nome.replace(/æ/g, "a").replace(/ø/g, "o");
       }
-      if (item && item.vendas && typeof item.vendas === "string") {
-        item.vendas = Number(item.vendas);
+      if (item && item.Venda && typeof item.Venda === "string") {
+        item.Venda = Number(item.Venda);
       }
+      console.log(item.Venda, "Oiiiiiiiiii");
       return item;
     });
 
@@ -55,10 +52,14 @@ async function corrigir_e_salvar() {
     );
 
     for (let item of json_nome_veiculo_corrigido) {
-      if ((item = !undefined)) {
-        await Venda.create(item);
+      if (item !== undefined) {
+        try {
+          const resultadoCreate1 = await database.create(item);
+          console.log(resultadoCreate1);
+        } catch (error) {
+          console.error("Erro ao criar e salvar Venda:", error);
+        }
       }
-      return item;
     }
 
     return dados1;
@@ -66,9 +67,10 @@ async function corrigir_e_salvar() {
 
   if (jsonData2) {
     let json_marca_veiculo_corrigido = jsonData2.map((item) => {
-      if (item.marca && typeof item.marca === "string") {
-        item.marca = item.marca.replace(/æ/g, "a").replace(/ø/g, "o");
+      if (item.Marca && typeof item.Marca === "string") {
+        item.Marca = item.Marca.replace(/æ/g, "a").replace(/ø/g, "o");
       }
+      console.log(item.Marca, "Marcaaaaaaaaaaaaaaaaaaaaaaaaaaa");
       return item;
     });
 
@@ -79,17 +81,22 @@ async function corrigir_e_salvar() {
     );
 
     for (let item of json_marca_veiculo_corrigido) {
-      await Marca.create(item);
+      try {
+        const resultadoCreate2 = await database.create(item);
+        console.log(resultadoCreate2);
+      } catch (error) {
+        console.error("Erro ao criar e salvar Marca:", error);
+      }
     }
+
     return dados2;
   }
 }
 
 async function main() {
   let sincronizar_dados;
-
   try {
-    await connection_sync;
+    await database;
     sincronizar_dados = await corrigir_e_salvar();
   } catch (error) {
     console.error("Erro ao sincronizar e corrigir dados:", error);

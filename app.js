@@ -1,22 +1,17 @@
-import { Sequelize, DataTypes } from "sequelize";
+const Sequelize = require('sequelize');
 
-const connection = new Sequelize("dbvendas", "dbuser", "root", {
-  host: "localhost",
-  dialect: "mysql",
-  port: 3306,
-});
+let sequelize;
 
-const connection_sync = connection
-  .authenticate()
-  .then(() => {
-    console.log("Conexão com o banco bem-sucedida");
-    return connection.sync();
-  })
-  .then(() => {
-    console.log("Modelo sincronizado com o banco de dados");
-  })
-  .catch((err) => {
-    console.log("Não foi possível estabelecer uma conexão:", err);
+try {
+  sequelize = new Sequelize("dbvendas", "dbuser", "root", {
+    dialect: 'mysql',
+    host: 'localhost',
+    port: 3306,
   });
+  console.log("Conexão com o banco bem-sucedida");
+} catch (error) {
+  console.log("Não foi possível estabelecer uma conexão:", error);
+}
 
-export { connection, connection_sync, DataTypes };
+module.exports = sequelize;
+

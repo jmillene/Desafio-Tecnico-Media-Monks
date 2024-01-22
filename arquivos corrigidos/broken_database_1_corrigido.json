@@ -37,7 +37,7 @@
   {
     "data": "2022-01-01",
     "id_marca_": 2,
-    "vendas": 2,
+    "vendas": "2",
     "valor_do_veiculo": 40000,
     "nome": "Gol"
   },
@@ -72,7 +72,7 @@
   {
     "data": "2022-01-01",
     "id_marca_": 11,
-    "vendas": 5,
+    "vendas": "5",
     "valor_do_veiculo": 70000,
     "nome": "Captur"
   },
@@ -93,7 +93,7 @@
   {
     "data": "2022-02-01",
     "id_marca_": 1,
-    "vendas": 52,
+    "vendas": "52",
     "valor_do_veiculo": 29000,
     "nome": "Mobi"
   },
@@ -135,7 +135,7 @@
   {
     "data": "2022-02-01",
     "id_marca_": 3,
-    "vendas": 4,
+    "vendas": "4",
     "valor_do_veiculo": 41000,
     "nome": "Cerato"
   },
@@ -219,7 +219,7 @@
   {
     "data": "2022-03-01",
     "id_marca_": 10,
-    "vendas": 5,
+    "vendas": "5",
     "valor_do_veiculo": 25000,
     "nome": "J5"
   },
@@ -247,7 +247,7 @@
   {
     "data": "2022-04-01",
     "id_marca_": 3,
-    "vendas": 30,
+    "vendas": "30",
     "valor_do_veiculo": 26000,
     "nome": "Picanto"
   },
@@ -268,7 +268,7 @@
   {
     "data": "2022-04-01",
     "id_marca_": 6,
-    "vendas": 5,
+    "vendas": "5",
     "valor_do_veiculo": 30000,
     "nome": "March"
   },
@@ -338,7 +338,7 @@
   {
     "data": "2022-05-01",
     "id_marca_": 5,
-    "vendas": 3,
+    "vendas": "3",
     "valor_do_veiculo": 35000,
     "nome": "Yaris"
   },
@@ -779,7 +779,7 @@
   {
     "data": "2022-11-01",
     "id_marca_": 2,
-    "vendas": 26,
+    "vendas": "26",
     "valor_do_veiculo": 58000,
     "nome": "Up"
   },
@@ -800,7 +800,7 @@
   {
     "data": "2022-11-01",
     "id_marca_": 5,
-    "vendas": 6,
+    "vendas": "6",
     "valor_do_veiculo": 158000,
     "nome": "Corolla"
   },
@@ -828,7 +828,7 @@
   {
     "data": "2022-11-01",
     "id_marca_": 9,
-    "vendas": 5,
+    "vendas": "5",
     "valor_do_veiculo": 40000,
     "nome": "onix"
   },
@@ -877,7 +877,7 @@
   {
     "data": "2022-12-01",
     "id_marca_": 5,
-    "vendas": 3,
+    "vendas": "3",
     "valor_do_veiculo": 75000,
     "nome": "Yaris"
   },
@@ -919,7 +919,7 @@
   {
     "data": "2022-12-01",
     "id_marca_": 11,
-    "vendas": 6,
+    "vendas": "6",
     "valor_do_veiculo": 52000,
     "nome": "Sandero"
   }
