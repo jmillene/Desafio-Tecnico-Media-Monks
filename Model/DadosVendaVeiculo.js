@@ -1,9 +1,8 @@
-const Sequelize = require('sequelize');
-const database = require('/home/milene/Desafio-Tecnico-Monks-Media/app.js');
+const Sequelize = require("sequelize");
+const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
 
-
-const Venda = database.define(
-  "Venda",
+const DadosVendasVeiculos = database.define(
+  "DadosVendasVeiculos",
   {
     id_venda: {
       type: Sequelize.INTEGER,
@@ -29,20 +28,19 @@ const Venda = database.define(
     },
   },
   {
-    tableName: "venda",
+    tableName: "dados_vendas_veiculos",
     underscored: true,
     timestamps: false,
   }
 );
 
-Venda.associate = (models) => {
-  Venda.belongsTo(models.MarcaVeiculo, {
+DadosVendasVeiculos.associate = (models) => {
+  DadosVendasVeiculos.belongsTo(DadosVendasVeiculos, {
     foreignKey: "id_marca",
-    as: "marcaVeiculo",
+    as: "dados_vendas_veiculos",
   });
 
-  return Venda;
+  return DadosVendasVeiculos;
 };
 
-module.exports = {Venda};
-
+module.exports = { DadosVendasVeiculos };

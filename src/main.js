@@ -1,5 +1,10 @@
 const fs = require("fs");
-const { Venda } = require("../Model/VendaVeiculo");
+const {
+  NomeMarcaVeiculos,
+} = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/NomeMarcaVeiculos.js");
+const {
+  DadosVendasVeiculos,
+} = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/DadosVendaVeiculo.js");
 
 async function lendo_Database_1() {
   try {
@@ -34,26 +39,27 @@ async function corrigir_e_salvar() {
   let jsonData2 = await lendo_Database_2();
 
   if (jsonData1) {
-    let json_nome_veiculo_corrigido = jsonData1.map((item) => {
+    let json_nome_veiculo_corrigido_1 = jsonData1.map((item) => {
       if (item && item.nome && typeof item.nome === "string") {
         item.nome = item.nome.replace(/æ/g, "a").replace(/ø/g, "o");
       }
       if (item && item.vendas && typeof item.vendas === "string") {
-        item.Venda = Number(item.vendas);
+        item.vendas = Number(item.vendas);
       }
       return item;
     });
 
+    await DadosVendasVeiculos.sync();
     dados1 = await fs.promises.writeFile(
       "arquivos corrigidos/broken_database_1_corrigido.json",
-      JSON.stringify(json_nome_veiculo_corrigido, null, 2),
-      "utf8"
+      JSON.stringify(json_nome_veiculo_corrigido_1),
+      "utf-8"
     );
 
-    for (let item of json_nome_veiculo_corrigido) {
+    for (let item of json_nome_veiculo_corrigido_1) {
       if (item !== undefined && item.id_marca !== undefined) {
         try {
-          const resultadoCreate1 = await Venda.create({
+          const resultadoCreate1 = await DadosVendasVeiculos.create({
             data: item.data,
             id_marca: item.id_marca,
             id_venda: item.id_venda,
@@ -61,44 +67,57 @@ async function corrigir_e_salvar() {
             valor_do_veiculo: item.valor_do_veiculo,
             nome: item.nome,
           });
-          return resultadoCreate1;
+          console.log(
+            "Dados das vendas dos veículos com sucesso!: ",
+            resultadoCreate1
+          );
         } catch (error) {
-          console.error("Erro ao criar e salvar Venda:", error);
+          console.error("Erro ao criar e salvar dados das vendas!: ", error);
         }
       }
     }
-
-    return dados1;
   }
 
   if (jsonData2) {
-    let json_marca_veiculo_corrigido = jsonData2.map((item) => {
-      if (item.Marca && typeof item.Marca === "string") {
-        item.Marca = item.Marca.replace(/æ/g, "a").replace(/ø/g, "o");
+    let json_marca_veiculo_corrigido_2 = jsonData2.map((item) => {
+      if (item.marca && typeof item.marca === "string") {
+        item.marca = item.marca.replace(/æ/g, "a").replace(/ø/g, "o");
       }
       return item;
     });
 
+    await NomeMarcaVeiculos.sync();
     dados2 = await fs.promises.writeFile(
       "arquivos corrigidos/broken_database_2_corrigido.json",
-      JSON.stringify(json_marca_veiculo_corrigido, null, 2),
-      "utf8"
+      JSON.stringify(json_marca_veiculo_corrigido_2),
+      "utf-8"
     );
 
-    for (let item of json_marca_veiculo_corrigido) {
-      try {
-        const resultadoCreate2 = await Marca.create({
-          id_marca: item.id_marca,
-          nome: item.nome,
-        });
-        console.log("Marca criada com sucesso:", resultadoCreate2);
-      } catch (error) {
-        console.error("Erro ao criar e salvar Marca:", error);
+    for (let item of json_marca_veiculo_corrigido_2) {
+      if (item !== undefined && item.id_marca !== undefined) {
+        try {
+          const resultadoCreate2 = await NomeMarcaVeiculos.create({
+            id_marca: item.id_marca,
+            nome: item.marca,
+          });
+          console.log(
+            "Dados das marcas criados com sucesso!: ",
+            resultadoCreate2
+          );
+        } catch (error) {
+          console.error(
+            "Erro ao criar e salvar dados das marcas dos veículos!:",
+            error
+          );
+        }
       }
     }
-
-    return dados2;
   }
+
+  return {
+    salvando_dados_modificados_1: dados1,
+    salvando_dados_modificados_2: dados2,
+  };
 }
 
 async function main() {
