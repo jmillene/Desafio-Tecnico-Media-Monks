@@ -1,7 +1,15 @@
-import { connection } from "/home/jessica/Documentos/DESAFIO TECH MEDIA MONKS/app.js";
-import { DataTypes } from "sequelize";
+import {
+  connection,
+  DataTypes,
+} from "/home/milene/Documents/Desafio-Tecnico-Monks-Media/app.js";
 
 const Marca = connection.define("Marca", {
+  id_marca: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+  },
   marca: {
     type: DataTypes.STRING,
   },
@@ -10,6 +18,12 @@ const Marca = connection.define("Marca", {
 const Venda = connection.define("Venda", {
   data: {
     type: DataTypes.DATEONLY,
+  },
+  id_marca: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
   },
   vendas: {
     type: DataTypes.INTEGER,

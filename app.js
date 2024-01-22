@@ -1,9 +1,9 @@
-import { Sequelize } from "sequelize";
+import { Sequelize, DataTypes } from "sequelize";
 
-const connection = new Sequelize("root", "root", "root", {
+const connection = new Sequelize("dbvendas", "dbuser", "root", {
   host: "localhost",
   dialect: "mysql",
-  port: 3308,
+  port: 3306,
 });
 
 const connection_sync = connection
@@ -19,4 +19,4 @@ const connection_sync = connection
     console.log("Não foi possível estabelecer uma conexão:", err);
   });
 
-export { connection, connection_sync };
+export { connection, connection_sync, DataTypes };

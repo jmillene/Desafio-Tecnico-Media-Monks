@@ -2,12 +2,12 @@ import fs from "fs";
 import {
   Venda,
   Marca,
-} from "/home/jessica/Documentos/DESAFIO TECH MEDIA MONKS/model/model.js";
-import { connection_sync } from "/home/jessica/Documentos/DESAFIO TECH MEDIA MONKS/app.js";
+} from "/home/milene/Documents/Desafio-Tecnico-Monks-Media/model/model.js";
+import { connection_sync } from "/home/milene/Documents/Desafio-Tecnico-Monks-Media/app.js";
 
 async function lendo_Database_1() {
   try {
-    const data1 = await fs.promises.readFile(
+    let data1 = await fs.promises.readFile(
       "databases/broken_database_1.json",
       "utf8"
     );
@@ -20,7 +20,7 @@ async function lendo_Database_1() {
 
 async function lendo_Database_2() {
   try {
-    const data2 = await fs.promises.readFile(
+    let data2 = await fs.promises.readFile(
       "databases/broken_database_2.json",
       "utf8"
     );
@@ -34,11 +34,11 @@ async function lendo_Database_2() {
 async function corrigir_e_salvar() {
   let dados1, dados2;
 
-  const jsonData1 = await lendo_Database_1();
-  const jsonData2 = await lendo_Database_2();
+  let jsonData1 = await lendo_Database_1();
+  let jsonData2 = await lendo_Database_2();
 
   if (jsonData1) {
-    const json_nome_veiculo_corrigido = jsonData1.map((item) => {
+    let json_nome_veiculo_corrigido = jsonData1.map((item) => {
       if (item && item.nome && typeof item.nome === "string") {
         item.nome = item.nome.replace(/æ/g, "a").replace(/ø/g, "o");
       }
@@ -54,15 +54,18 @@ async function corrigir_e_salvar() {
       "utf8"
     );
 
-    for (const item of json_nome_veiculo_corrigido) {
-      await Venda.create(item);
+    for (let item of json_nome_veiculo_corrigido) {
+      if ((item = !undefined)) {
+        await Venda.create(item);
+      }
+      return item;
     }
 
     return dados1;
   }
 
   if (jsonData2) {
-    const json_marca_veiculo_corrigido = jsonData2.map((item) => {
+    let json_marca_veiculo_corrigido = jsonData2.map((item) => {
       if (item.marca && typeof item.marca === "string") {
         item.marca = item.marca.replace(/æ/g, "a").replace(/ø/g, "o");
       }
@@ -75,12 +78,13 @@ async function corrigir_e_salvar() {
       "utf8"
     );
 
-    for (const item of json_nome_veiculo_corrigido) {
+    for (let item of json_marca_veiculo_corrigido) {
       await Marca.create(item);
     }
     return dados2;
   }
 }
+
 async function main() {
   let sincronizar_dados;
 
