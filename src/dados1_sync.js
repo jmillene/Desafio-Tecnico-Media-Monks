@@ -1,8 +1,6 @@
 const fs = require("fs");
-const {
-  DadosVendasVeiculos,
-  database,
-} = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/DadosVendaVeiculos.js");
+const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
+const DadosVendasVeiculos = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/DadosVendasVeiculos.js")(database);
 
 async function lendo_Database_1() {
   try {
@@ -43,12 +41,15 @@ async function corrigir_e_salvar_json_1() {
 
       for (let item of json_nome_veiculo_corrigido_1) {
         try {
-          // Verifica se a chave id_marca existe no objeto
-          if ("id_marca_" in item) {
+          // Verifica se a chave id_marca_ existe no objeto
+          if ("id_marca_" in item && item.id_marca_ !== null) {
+            // Use o valor de id_marca_ se estiver presente, caso contrário, use id_marca
+            const idMarca = item.id_marca_ || item.id_marca;
+
             const resultadoCreate1 = await DadosVendasVeiculos.create({
               data: item.data,
               id_venda: item.id_venda,
-              id_marca: item.id_marca_,
+              id_marca: idMarca,
               vendas: item.vendas,
               valor_do_veiculo: item.valor_do_veiculo,
               nome: item.nome,
@@ -59,7 +60,7 @@ async function corrigir_e_salvar_json_1() {
             );
           } else {
             console.error(
-              "Erro: A chave id_marca está ausente no objeto:",
+              "Erro: A chave id_marca_ está ausente ou é nula no objeto:",
               item
             );
           }

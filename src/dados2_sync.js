@@ -1,5 +1,6 @@
 const fs = require("fs");
-const { NomeMarcaVeiculos, database } = require("../Model/NomeMarcaVeiculos.js");
+const database = require ("/home/milene/Desafio-Tecnico-Monks-Media/app.js")
+const NomesMarcasVeiculos= require("/home/milene/Desafio-Tecnico-Monks-Media/Model/NomesMarcasVeiculos.js")(database);
 
 async function lendo_Database_2() {
   try {
@@ -35,7 +36,8 @@ async function corrigir_e_salvar_json_2() {
     for (let item of json_marca_veiculo_corrigido_2) {
       if (item !== undefined && item.marca !== undefined) {
         try {
-          const resultadoCreate2 = await NomeMarcaVeiculos.create({
+          const resultadoCreate2 = await NomesMarcasVeiculos.create({
+            id_marca: item.id_marca,
             nome: item.marca,
           });
           console.log(
@@ -54,15 +56,12 @@ async function corrigir_e_salvar_json_2() {
 }
 
 async function main() {
-  let sincronizar_dados;
   try {
-    sincronizar_dados = await corrigir_e_salvar_json_2();
+    await corrigir_e_salvar_json_2();
     console.log("Dados salvos no Banco de dados");
   } catch (error) {
     console.error("Erro ao sincronizar e corrigir dados:", error);
   }
-
-  return sincronizar_dados;
 }
 
 main();
