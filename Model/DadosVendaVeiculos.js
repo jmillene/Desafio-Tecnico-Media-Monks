@@ -1,4 +1,7 @@
 const Sequelize = require("sequelize");
+const {
+  NomeMarcaVeiculos,
+} = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/NomeMarcaVeiculos.js");
 const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
 
 const DadosVendasVeiculos = database.define(
@@ -14,7 +17,7 @@ const DadosVendasVeiculos = database.define(
       type: Sequelize.DATEONLY,
     },
     vendas: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL,
     },
     valor_do_veiculo: {
       type: Sequelize.INTEGER,
@@ -34,13 +37,7 @@ const DadosVendasVeiculos = database.define(
   }
 );
 
-DadosVendasVeiculos.associate = (models) => {
-  DadosVendasVeiculos.belongsTo(DadosVendasVeiculos, {
-    foreignKey: "id_marca",
-    as: "dados_vendas_veiculos",
-  });
-
-  return DadosVendasVeiculos;
-};
-
-module.exports = { DadosVendasVeiculos };
+// Associações
+DadosVendasVeiculos.belongsTo(NomeMarcaVeiculos, { foreignKey: 'id_marca', targetKey: 'id_marca' });
+NomeMarcaVeiculos.hasMany(DadosVendasVeiculos, { foreignKey: 'id_marca', sourceKey: 'id_marca' });
+module.exports = { DadosVendasVeiculos, database}

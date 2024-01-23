@@ -21,4 +21,4 @@ const NomeMarcaVeiculos = database.define(
   }
 );
 
-module.exports = { NomeMarcaVeiculos };
+module.exports = { NomeMarcaVeiculos, database };
