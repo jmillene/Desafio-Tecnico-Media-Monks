@@ -11,8 +11,9 @@ const nomesMarcasVeiculosSchema = (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
-      nome: {
+      marca: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
     },
     {
