@@ -5,14 +5,10 @@ const dadosVendasCarrosSchema = (sequelize) => {
   const DadosVendasVeiculos = database.define(
     "DadosVendasVeiculos",
     {
-      id_venda: {
+      id_marca_: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false,
-      },
-      id_marca: {
-        type: Sequelize.INTEGER,
         allowNull: false,
       },
       data: {
@@ -37,7 +33,7 @@ const dadosVendasCarrosSchema = (sequelize) => {
 
   DadosVendasVeiculos.associate = (models) => {
     DadosVendasVeiculos.belongsTo(models.NomesMarcasVeiculos, {
-      foreignKey: "id_marca",
+      foreignKey: "id_marca_",
       as: "marca",
     });
   };

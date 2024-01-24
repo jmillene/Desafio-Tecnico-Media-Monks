@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
-const DadosVendasVeiculos = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/DadosVendasVeiculos.js");
 
 const nomesMarcasVeiculosSchema = (sequelize, DataTypes) => {
   const NomesMarcasVeiculos = database.define(
@@ -25,7 +24,7 @@ const nomesMarcasVeiculosSchema = (sequelize, DataTypes) => {
 
   NomesMarcasVeiculos.associate = (models) => {
     NomesMarcasVeiculos.hasMany(models.DadosVendasVeiculos, {
-      foreignKey: "id_marca_",
+      foreignKey: "id_marca",
       as: "marca",
     });
   };

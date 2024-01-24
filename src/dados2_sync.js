@@ -1,6 +1,9 @@
 const fs = require("fs");
-const database = require ("/home/milene/Desafio-Tecnico-Monks-Media/app.js")
-const NomesMarcasVeiculos= require("/home/milene/Desafio-Tecnico-Monks-Media/Model/NomesMarcasVeiculos.js")(database);
+const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
+const NomesMarcasVeiculos =
+  require("/home/milene/Desafio-Tecnico-Monks-Media/Model/NomesMarcasVeiculos.js")(
+    database
+  );
 
 async function lendo_Database_2() {
   try {
@@ -38,7 +41,7 @@ async function corrigir_e_salvar_json_2() {
         try {
           const resultadoCreate2 = await NomesMarcasVeiculos.create({
             id_marca: item.id_marca,
-            nome: item.marca,
+            marca: item.marca,
           });
           console.log(
             "Dados das marcas criados com sucesso!: ",

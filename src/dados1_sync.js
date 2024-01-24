@@ -1,6 +1,9 @@
 const fs = require("fs");
 const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
-const DadosVendasVeiculos = require("/home/milene/Desafio-Tecnico-Monks-Media/Model/DadosVendasVeiculos.js")(database);
+const DadosVendasVeiculos =
+  require("/home/milene/Desafio-Tecnico-Monks-Media/Model/DadosVendasVeiculos.js")(
+    database
+  );
 
 async function lendo_Database_1() {
   try {
@@ -43,12 +46,11 @@ async function corrigir_e_salvar_json_1() {
         try {
           // Verifica se a chave id_marca_ existe no objeto
           if ("id_marca_" in item && item.id_marca_ !== null) {
-            // Use o valor de id_marca_ se estiver presente, caso contrário, use id_marca
+            // Usa o valor de id_marca_ se estiver presente, caso contrário, use id_marca
             const idMarca = item.id_marca_ || item.id_marca;
 
             const resultadoCreate1 = await DadosVendasVeiculos.create({
               data: item.data,
-              id_venda: item.id_venda,
               id_marca: idMarca,
               vendas: item.vendas,
               valor_do_veiculo: item.valor_do_veiculo,
