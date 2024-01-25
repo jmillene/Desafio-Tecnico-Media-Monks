@@ -1,7 +1,7 @@
 const fs = require("fs");
 const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
 const DadosVendasVeiculos =
-  require("/home/milene/Desafio-Tecnico-Monks-Media/Model/DadosVendasVeiculos.js")(
+  require("../model/DadosVendasVeiculos.js")(
     database
   );
 
@@ -37,5 +37,12 @@ async function corrigir_json() {
       "utf-8"
     );
   }
+  // Promise é um objeto usado para processamento assíncrono. 
+  // Um Promise (de "promessa") representa um valor que pode estar disponível agora, no futuro ou nunca.
+}
+async function salvar_dados_myqsl(){
+
+
+
 }
 corrigir_json();

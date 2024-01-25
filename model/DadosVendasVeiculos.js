@@ -30,13 +30,6 @@ const dadosVendasCarrosSchema = (sequelize) => {
       timestamps: false,
     }
   );
-
-  // DadosVendasVeiculos.associate = (models) => {
-  //   DadosVendasVeiculos.belongsTo(models.NomesMarcasVeiculos, {
-  //     foreignKey: "id_marca_",
-  //     as: "marca",
-  //   });
-  // };
   return DadosVendasVeiculos;
 };
 

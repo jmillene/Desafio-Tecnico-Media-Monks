@@ -1,7 +1,7 @@
 const fs = require("fs");
 const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
 const DadosVendasVeiculos =
-  require("/home/milene/Desafio-Tecnico-Monks-Media/Model/DadosVendasVeiculos.js")(
+  require("../model/DadosVendasVeiculos.js")(
     database
   );
 
