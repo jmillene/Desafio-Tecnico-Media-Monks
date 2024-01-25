@@ -1,23 +1,23 @@
 module.exports = {
   "development": {
-    "username": "dbuser",
-    "password": "root",
-    "database": "database_development",
-    "host": "127.0.0.1",
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
     "dialect": "mysql"
   },
   "test": {
-    "username": "dbuser",
-    "password": "root",
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
     "dialect": "mysql"
   },
   "production": {
-    "username": "dbuser",
-    "password": "root",
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
     "dialect": "mysql"
   }
-}
+};

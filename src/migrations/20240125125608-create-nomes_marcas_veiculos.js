@@ -1,8 +1,6 @@
 "use strict";
-
-{
-  import("sequelize-cli").Migration;
-}
+const { Sequelize } = require('sequelize');
+const { DataTypes } = require('sequelize');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("nome_marcas_veiculos",

@@ -3,21 +3,20 @@ require("dotenv").config()
 const mysql = require("mysql2")
 
 // Configurações de conexão
-const conexao = mysql.createConnection({
+const pool= mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: "db_info_veiculos",
+  database: "bd_info_veiculos",
 })
 
-// Tentar estabelecer a conexão
-conexao.connect((err) => {
+// Para obter uma conexão do pool
+pool.getConnection((err, connection) => {
   if (err) {
-    console.error(`Erro ao conectar ao banco de dados: ${err.message}`)
+    console.error(`Erro ao obter uma conexão: ${err.message}`)
   } else {
     console.log(`Conexão bem-sucedida!`)
+    // Libere a conexão quando terminar
+    connection.release()
   }
-
-  // Fechar a conexão, independentemente do resultado
-  conexao.end()
 })
