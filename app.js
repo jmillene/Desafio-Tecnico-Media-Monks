@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 let sequelize;
 
 try {
-  sequelize = new Sequelize("dbvendasveiculos", "dbuser", "root", {
+  sequelize = new Sequelize("bd_veiculos", "root", "root", {
     dialect: 'mysql',
     host: 'localhost',
     port: 3306,

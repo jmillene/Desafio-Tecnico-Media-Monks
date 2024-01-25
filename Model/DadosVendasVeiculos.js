@@ -31,12 +31,12 @@ const dadosVendasCarrosSchema = (sequelize) => {
     }
   );
 
-  DadosVendasVeiculos.associate = (models) => {
-    DadosVendasVeiculos.belongsTo(models.NomesMarcasVeiculos, {
-      foreignKey: "id_marca_",
-      as: "marca",
-    });
-  };
+  // DadosVendasVeiculos.associate = (models) => {
+  //   DadosVendasVeiculos.belongsTo(models.NomesMarcasVeiculos, {
+  //     foreignKey: "id_marca_",
+  //     as: "marca",
+  //   });
+  // };
   return DadosVendasVeiculos;
 };
 

@@ -23,12 +23,12 @@ const nomesMarcasVeiculosSchema = (sequelize, DataTypes) => {
     }
   );
 
-  NomesMarcasVeiculos.associate = (models) => {
-    NomesMarcasVeiculos.hasMany(models.DadosVendasVeiculos, {
-      foreignKey: "id_marca",
-      as: "marca",
-    });
-  };
+  // NomesMarcasVeiculos.associate = (models) => {
+  //   NomesMarcasVeiculos.hasMany(models.DadosVendasVeiculos, {
+  //     foreignKey: "id_marca",
+  //     as: "marca",
+  //   });
+  // };
   return NomesMarcasVeiculos;
 };
 
