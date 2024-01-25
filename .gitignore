@@ -1,1 +1,3 @@
 container docker
+node_modules
+.env
