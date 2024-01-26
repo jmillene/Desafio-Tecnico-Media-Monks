@@ -1,10 +1,7 @@
-const Sequelize = require("sequelize");
-const database = require("/home/milene/Desafio-Tecnico-Monks-Media/app.js");
-
-const dadosVendasCarrosSchema = (sequelize) => {
-  const DadosVendasVeiculos = database.define(
-    "DadosVendasVeiculos",
-    {
+"use strict"
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable("dados_vendas_veiculos", {
       id_marca_: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -21,16 +18,16 @@ const dadosVendasCarrosSchema = (sequelize) => {
         type: Sequelize.INTEGER,
       },
       nome: {
-        type: Sequelize.STRING,
-      },
-    },
-    {
+        type: Sequelize.STRING(11),
+      }
+    }, {
       tableName: "dados_vendas_veiculos",
       underscored: true,
       timestamps: false,
-    }
-  );
-  return DadosVendasVeiculos;
-};
+    });
+  },
 
-module.exports = dadosVendasCarrosSchema;
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable("dados_vendas_veiculos");
+  },
+};
