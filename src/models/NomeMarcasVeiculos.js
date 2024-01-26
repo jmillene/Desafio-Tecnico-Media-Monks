@@ -25,6 +25,12 @@ const nomeMarcasVeiculosSchema = (sequelize) => {
       timestamps: false,
     }
   );
+  NomeMarcasVeiculos.associate = (models) => {
+    NomeMarcasVeiculos.hasMany(models.NomeMarcasVeiculos, {
+      foreignKey: "id_marca",
+      as: "marca",
+    });
+  };
   return NomeMarcasVeiculos;
 };
 

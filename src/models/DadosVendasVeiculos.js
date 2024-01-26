@@ -1,9 +1,14 @@
 const Sequelize = require("sequelize")
-require("dotenv").config();
-const sequelize = new Sequelize(process.env.MYSQL_DATABASE || "dados", process.env.MYSQL_USER || "myuser", process.env.MYSQL_PASSWORD || "root", {
-  host: process.env.MYSQL_HOST || "127.0.0.1",
-  dialect: "mysql",
-});
+require("dotenv").config()
+const sequelize = new Sequelize(
+  process.env.MYSQL_DATABASE || "dados",
+  process.env.MYSQL_USER || "myuser",
+  process.env.MYSQL_PASSWORD || "root",
+  {
+    host: process.env.MYSQL_HOST || "127.0.0.1",
+    dialect: "mysql",
+  }
+)
 
 const dadosVendasCarrosSchema = (sequelize) => {
   const DadosVendasVeiculos = sequelize.define(
@@ -34,6 +39,12 @@ const dadosVendasCarrosSchema = (sequelize) => {
       timestamps: false,
     }
   )
+  DadosVendasVeiculos.associate = (models) => {
+    DadosVendasVeiculos.belongsTo(models.NomeMarcasVeiculos, {
+      foreignKey: "id_marca",
+      as: "marca",
+    })
+  }
   return DadosVendasVeiculos
 }
 

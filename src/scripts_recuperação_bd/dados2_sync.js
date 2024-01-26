@@ -1,7 +1,9 @@
 const fs = require("fs")
 const {
   NomeMarcasVeiculos,
-} = require("/home/milene/Desafio-Tecnico-Monks-Media/models/NomeMarcasVeiculos.js")
+  sequelize,
+} = require("/home/milene/Desafio-Tecnico-Monks-Media/src/models/NomeMarcasVeiculos.js")
+
 async function lendo_Database_2() {
   try {
     let data2 = await fs.promises.readFile(
@@ -32,17 +34,16 @@ async function corrigirJson() {
         JSON.stringify(json_nome_veiculo_corrigido_2),
         "utf-8"
       )
-
-      // Retorna os dados corrigidos para poderem ser utilizados posteriormente
-      console.log(json_nome_veiculo_corrigido_2);
       return json_nome_veiculo_corrigido_2
     }
   } catch (error) {
     console.error("Erro ao corrigir JSON:", error)
-    throw error // Lança o erro para ser capturado no bloco catch do script principal
+    throw error
   }
 }
-;(async () => {
+
+// Aguarda a conclusão da migração antes de executar o script
+sequelize.sync().then(async () => {
   try {
     const dadosJson = await corrigirJson()
     if (dadosJson) {
@@ -50,14 +51,15 @@ async function corrigirJson() {
         dadosJson.map(async (item) => {
           const criarDados = await NomeMarcasVeiculos.create({
             marca: item.marca,
-          });
-          return criarDados;
+          })
+          return criarDados
         })
-      );      
-      return dadosRecebidos
+      )
+      console.log("Registros criados com sucesso:", dadosRecebidos)
     }
   } catch (error) {
     console.error("Erro geral:", error)
+  } finally {
+    sequelize.close()
   }
-})()
-
+})

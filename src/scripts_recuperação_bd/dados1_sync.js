@@ -1,7 +1,7 @@
 const fs = require("fs")
 const {
   DadosVendasVeiculos,
-} = require("/home/milene/Desafio-Tecnico-Monks-Media/models/DadosVendasVeiculos.js")
+} = require("/home/milene/Desafio-Tecnico-Monks-Media/src/models/DadosVendasVeiculos.js")
 
 async function lerDatabase1() {
   try {
@@ -37,7 +37,7 @@ async function corrigirJson() {
         "utf-8"
       )
 
-      return jsonNomeVeiculoCorrigido1 // Garante que os dados corrigidos sejam retornados
+      return jsonNomeVeiculoCorrigido1
     }
   } catch (error) {
     console.error("Erro ao corrigir JSON:", error)
