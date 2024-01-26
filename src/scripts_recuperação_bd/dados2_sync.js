@@ -1,7 +1,7 @@
 const fs = require("fs")
 const {
   NomeMarcasVeiculos,
-} = require("/home/milene/Desafio-Tecnico-Monks-Media/src/models/NomeMarcasVeiculos.js")
+} = require("/home/milene/Desafio-Tecnico-Monks-Media/models/NomeMarcasVeiculos.js")
 async function lendo_Database_2() {
   try {
     let data2 = await fs.promises.readFile(
@@ -60,3 +60,4 @@ async function corrigirJson() {
     console.error("Erro geral:", error)
   }
 })()
+
